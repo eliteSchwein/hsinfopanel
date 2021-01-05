@@ -2,7 +2,7 @@ import store from '../store/index'
 
 const axios = require('axios');
 
-var URL = store.state.gui.modules.ressourcemonitorUrl;
+var URL = "http://localhost:8082";
 
 var now = Date.now();
 
@@ -51,7 +51,7 @@ setInterval(retrieveDataHW,2000);
 
 function checkURL(){
     var oldURL = URL;
-    URL = store.state.gui.modules.ressourcemonitorUrl;
+    URL = "http://localhost:8082";
     if(!URL.startsWith("https://")&&!URL.startsWith("http://")){
         return;
     }
@@ -61,12 +61,12 @@ function checkURL(){
         networkColorArray=undefined;
         functiontimerhw=0;
         functiontimerload=0;
-        store.dispatch('gui/setData', { dashboard: { boolRessourceMonitorAvailable: false } });
+        store.dispatch('ressourcemonitor/setData', {  connected: false  });
     }
     now = Date.now();
     axios.get(URL,{timeout:900})
     .then(function (){
-        store.dispatch('gui/setData', { dashboard: { boolRessourceMonitorAvailable: true } });
+        store.dispatch('ressourcemonitor/setData', { connected: true  });
         if(typeof(gpuColorArray)==="undefined"){
             setGPUColors();
         }
@@ -82,13 +82,13 @@ function checkURL(){
         }
     })
     .catch(function (){
-        store.dispatch('gui/setData', { dashboard: { boolRessourceMonitorAvailable: false } });
+        store.dispatch('ressourcemonitor/setData', { connected: false  });
         return;
     });
 }
 
 function retrieveDataLoad(){
-    if(store.state.gui.dashboard.boolRessourceMonitorAvailable==true){
+    if(store.state.ressourcemonitor.connected==true){
         if(functiontimerload==0){
             retrieveCPUSpeed();
             retrieveCPUTemp();
@@ -111,7 +111,7 @@ function retrieveDataLoad(){
     }
 }
 function retrieveDataHW(){
-    if(store.state.gui.dashboard.boolRessourceMonitorAvailable==true){
+    if(store.state.ressourcemonitor.connected==true){
         if(functiontimerhw==0){
             retrieveBIOS();
             retrieveMainboard();
@@ -140,7 +140,7 @@ function retrieveDataHW(){
 }
 
 function retrieveDataOnce(){
-    if(store.state.gui.dashboard.boolRessourceMonitorAvailable==true){
+    if(store.state.ressourcemonitor.connected==true){
         retrieveChassis();
         retrieveSystem();
         retrieveBIOS()

@@ -7,10 +7,6 @@ import getters from './getters'
 
 // load modules
 import socket from './socket'
-import server from './server'
-import printer from './printer'
-import files from './files'
-import gui from './gui'
 import ressourcemonitor from './ressourcemonitor'
 
 Vue.use(Vuex);
@@ -22,10 +18,6 @@ export default new Vuex.Store({
     },
     modules: {
         socket,
-        server,
-        printer,
-        files,
-        gui,
         ressourcemonitor,
     },
     getters: getters,

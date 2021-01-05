@@ -1,91 +1,13 @@
-import Dashboard from '../pages/Dashboard.vue'
-import Webcam from '../pages/Webcam.vue'
-import Console from '../pages/Console.vue'
-import Heightmap from '../pages/Heightmap.vue'
-import Files from '../pages/Files.vue'
-import Settings from '../pages/Settings.vue'
 import Ressourcemonitor from '../pages/Ressourcemonitor.vue'
-import SettingsInterface from '../pages/settings/interface.vue'
-import SettingsMachine from '../pages/settings/machine.vue'
-import SettingsModules from '../pages/settings/modules.vue'
 
 const routes = [
     {
         title: "Dashboard",
         path: '/',
         icon: 'view-dashboard',
-        component: Dashboard,
-        alwaysShow: true,
-    },
-    {
-        title: "Webcam",
-        path: '/cam',
-        icon: 'webcam',
-        component: Webcam,
-        alwaysShow: false,
-    },
-    {
-        title: "Console",
-        path: '/console',
-        icon: 'console-line',
-        component: Console,
-        alwaysShow: true,
-    },
-    {
-        title: "Heightmap",
-        path: '/heightmap',
-        icon: 'grid',
-        component: Heightmap,
-        alwaysShow: false,
-    },
-    /*{
-        title: "Current Job",
-        path: '/status',
-        icon: 'printer-3d-nozzle',
-        component: Status
-    },*/
-    {
-        title: "G-Code Files",
-        path: '/files',
-        icon: 'printer-3d-nozzle',
-        component: Files,
-        alwaysShow: false,
-    },
-    {
-        title: "Ressource Monitor",
-        path: '/ressourcemonitor',
-        icon: 'server',
         component: Ressourcemonitor,
         alwaysShow: true,
-    },
-    {
-        title: "Settings",
-        path: '/settings',
-        redirect: '/settings/machine',
-        icon: 'wrench',
-        component: Settings,
-        alwaysShow: true,
-        children: [
-            {
-                title: 'Machine',
-                path: '/settings/machine',
-                component: SettingsMachine,
-                alwaysShow: true,
-            },
-            {
-                title: 'Interface',
-                path: '/settings/interface',
-                component: SettingsInterface,
-                alwaysShow: true,
-            },
-            {
-                title: 'Modules',
-                path: '/settings/modules',
-                component: SettingsModules,
-                alwaysShow: true,
-            },
-        ]
-    },
+    }
 
 ];
 

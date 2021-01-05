@@ -145,7 +145,7 @@
         computed: {
             ressourcemanagerAviable: {
                 get() {
-                    return this.$store.state.gui.dashboard.boolRessourceMonitorAvailable;
+                    return this.$store.state.ressourcemonitor.connected;
                 }
             },
         },

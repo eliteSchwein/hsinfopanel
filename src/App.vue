@@ -24,7 +24,7 @@
         >
             <div id="nav-header">
                 <img :src="require('./assets/logo.svg')" />
-                <v-toolbar-title>{{ printername !== "" ? printername : hostname }}</v-toolbar-title>
+                <v-toolbar-title>E</v-toolbar-title>
             </div>
             <ul class="navi" :expand="$vuetify.breakpoint.mdAndUp">
                 <li v-for="(category, index) in routes" :key="index" :prepend-icon="category.icon"
@@ -32,16 +32,7 @@
                     :value="true"
                     >
                     <router-link
-                        slot="activator" class="nav-link" exact :to="category.path" @click.prevent
-                        v-if="
-                            (category.title === 'Webcam' && boolNaviWebcam) ||
-                            (category.title === 'Heightmap' && boolNaviHeightmap) ||
-                            (
-                                category.title !== 'Webcam' &&
-                                category.title !== 'Heightmap' &&
-                                (klippy_state !== 'error' || category.alwaysShow)
-                            )
-                        ">
+                        slot="activator" class="nav-link" exact :to="category.path">
                         <v-icon>mdi-{{ category.icon }}</v-icon>
                         <span class="nav-title">{{ category.title }}</span>
                         <v-icon class="nav-arrow" v-if="category.children && category.children.length > 0">mdi-chevron-down</v-icon>
@@ -61,36 +52,9 @@
 
         <v-app-bar app elevate-on-scroll>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" class="mr-5 d-none d-sm-flex" v-if="isConnected && save_config_pending" :loading="loadings.includes['topbarSaveConfig']" @click="clickSaveConfig">SAVE CONFIG</v-btn>
-            <v-btn color="error" class="button-min-width-auto px-3" v-if="isConnected" :loading="loadings.includes['topbarEmergencyStop']" @click="clickEmergencyStop"><v-icon class="mr-sm-2">mdi-alert-circle-outline</v-icon><span class="d-none d-sm-flex">Emergency Stop</span></v-btn>
-            <v-menu bottom left :offset-y="true">
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn dark icon v-bind="attrs" v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                </template>
-
-                <v-list dense>
-                    <v-list-item link @click="doRestart()">
-                        <v-list-item-title><v-icon class="mr-3">mdi-sync</v-icon>Restart</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item link @click="doFirmwareRestart()">
-                        <v-list-item-title><v-icon class="mr-3">mdi-sync</v-icon>FW Restart</v-list-item-title>
-                    </v-list-item>
-                    <v-divider></v-divider>
-                    <v-list-item link @click="doHostReboot()">
-                        <v-list-item-title><v-icon class="mr-3">mdi-power</v-icon>Reboot Host</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item link @click="doHostShutdown()">
-                        <v-list-item-title><v-icon class="mr-3">mdi-power</v-icon>Shutdown Host</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
-            
         </v-app-bar>
 
-        <v-main id="content">
+        <v-main id="content" v-bind:style="{backgroundImage:'url('+require('@/assets/background.jpg')+')',backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}">
             
             <v-scroll-y-transition>
                 <v-container fluid id="page-container" class="container px-sm-6 px-3 mx-auto">
@@ -100,42 +64,16 @@
                 </v-container>
             </v-scroll-y-transition>
         </v-main>
-
-        <!--<v-dialog v-model="overlayDisconnect" persistent width="300">
-            <v-card color="primary" dark >
-                <v-card-text class="pt-2">
-                    Connecting...
-                    <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-                </v-card-text>
-            </v-card>
-        </v-dialog>-->
-            
         
         <v-footer app class="d-block" style="z-index:20000">
             
-            <span style="z-index=200" v-if="showVersion">v{{ getVersion }}</span>
-            <span style="z-index=200" class="float-right d-none d-sm-inline" v-if="version&showVersion">{{ version }} </span>
-            
-            <div class="keyboard-context" v-if="visible&virtualKeyboard">
-                <div class="keyboard-context-name">
-                    <span style="z-index=200">{{ virtualKeyboardName }}</span>
-                </div>
-                    
-                <div class="keyboard-context-input">
-                        <span>{{virtualKeyboardInput}}</span>
-                </div>
-            </div>
-            
-            <vue-touch-keyboard @click.native="keyboardClick" style="z-index: 200; " :options="options" v-if="visible&virtualKeyboard" :layout="layout" :cancel="hide" :accept="accept" :input="input" :next="clearKeyboard" />
+            <span style="z-index=200">{{ getVersion }}</span>
         </v-footer>
     </v-app>
 </template>
 
 <script>
-    import {bus} from "./main";
     import routes from './routes';
-    import layouts from "./inputs/KeyboardLayouts";
-    /*import SimpleKeyboard from "./components/SimpleKeyboard";*/
     import { mapState, mapGetters } from 'vuex';
 
 export default {
@@ -146,160 +84,29 @@ export default {
 
     },
     data: () => ({
-        enabledKeyboard: false,
-        overlayDisconnect: true,
-        drawer: null,
+        drawer: false,
         activeClass: 'active',
-        routes: routes,
-        boolNaviHeightmap: false,
-        visible: false,
-        layout: "normal",
-        input: null,
-        inputvalue: null,
-        inputname: null,
-        options: {
-            useKbEvents: true,
-            preventClickEvent: true
-        }
+        routes: routes
     }),
     created () {
-        this.enabledKeyboard = this.$cookies.isKey("enableVirtualKeyboard");
         this.$vuetify.theme.dark = true;
-        this.boolNaviHeightmap = (typeof(this.config.bed_mesh) !== "undefined");
     },
     computed: {
         currentPage: function() {
           return this.$route.fullPath;
         },
         ...mapState({
-            isConnected: state => state.socket.isConnected,
-            hostname: state => state.printer.hostname,
-            version: state => state.printer.software_version,
-            klippy_state: state => state.server.klippy_state,
-            loadings: state => state.socket.loadings,
-
-            toolhead: state => state.printer.toolhead,
-            printername: state => state.gui.general.printername,
-            virtual_sdcard: state => state.printer.virtual_sdcard,
-            current_file: state => state.printer.print_stats.filename,
-            boolNaviWebcam: state => state.gui.webcam.bool,
-            config: state => state.printer.configfile.config,
-            save_config_pending: state => state.printer.configfile.save_config_pending,
+            
         }),
         ...mapGetters([
             'getTitle',
             'getVersion'
         ]),
-        print_percent: {
-            get() {
-                return this.$store.getters["printer/getPrintPercent"];
-            }
-        },
-        virtualKeyboard: {
-            get() {
-                return this.enabledKeyboard;
-            },
-        },
-        showVersion: {
-            get() {
-                if(this.visible==false){
-                    return true;
-                }
-                return false;
-            },
-        },
-        virtualKeyboardInput: {
-            get() {
-                if(this.inputvalue==null){
-                    return null;
-                }
-                return this.inputvalue;
-            },
-        },
-        virtualKeyboardName: {
-            get() {
-                if(this.inputname==null){
-                    return null;
-                }
-                return this.inputname;
-            },
-        },
     },
     mounted() {
-        bus.$on('showkeyboard', (event) => {
-            if(!this.$cookies.isKey("enableVirtualKeyboard")){
-                return;
-            }
-            
-            console.log(event.target)
-            this.input = event.target;
-            this.inputvalue = this.input.value;
-            this.inputname = this.input.labels[0].textContent;
-            this.layout = layouts[this.input.dataset.layout];
-            
 
-            if (!this.visible)
-                this.visible = true
-        });
-        bus.$on('updatekeyboardcookie', () => {
-            this.enabledKeyboard=this.$cookies.isKey("enableVirtualKeyboard")
-        });
-        bus.$on('hidekeyboard', () => {
-            this.visible = false;
-            this.inputvalue = null;
-            this.inputname = null;
-            this.input = null;
-        });
     },
     methods: {
-        keyboardClick(){
-            if(this.input!=null){
-                this.inputvalue=this.input.value;
-            }
-        },
-        clearKeyboard(){
-            this.input.value=null,
-            this.inputvalue=null
-        },
-        accept() {
-          this.hide();
-        },
-        showkeyboard:function(e) {
-            this.input = e.target;
-            this.layout = e.target.dataset.layout;
-
-            if (!this.visible)
-                this.visible = true
-        },
-        hide() {
-          this.visible = false;
-          this.inputvalue = null;
-          this.inputname = null;
-          this.input = null;
-        },
-        clickEmergencyStop: function() {
-            this.$store.commit('socket/addLoading', { name: 'topbarEmergencyStop' });
-            this.$socket.sendObj('printer.emergency_stop', {}, 'socket/removeLoading',{ name: 'topbarEmergencyStop' });
-        },
-        clickSaveConfig: function() {
-            this.$store.commit('server/addEvent', "SAVE_CONFIG");
-            this.$store.commit('socket/addLoading', { name: 'topbarSaveConfig' });
-            this.$socket.sendObj('printer.gcode.script', { script: "SAVE_CONFIG" }, 'socket/removeLoading', { name: 'topbarSaveConfig' });
-        },
-        doRestart: function() {
-            this.$store.commit('server/addEvent', "RESTART");
-            this.$socket.sendObj('printer.gcode.script', { script: "RESTART" });
-        },
-        doFirmwareRestart: function() {
-            this.$store.commit('server/addEvent', "FIRMWARE_RESTART");
-            this.$socket.sendObj('printer.gcode.script', { script: "FIRMWARE_RESTART" });
-        },
-        doHostReboot: function() {
-            this.$socket.sendObj('machine.reboot', { });
-        },
-        doHostShutdown: function() {
-            this.$socket.sendObj('machine.shutdown', { });
-        },
         drawFavicon(val) {
             let favicon16 = document.querySelector("link[rel*='icon'][sizes='16x16']")
             let favicon32 = document.querySelector("link[rel*='icon'][sizes='32x32']")
@@ -351,20 +158,7 @@ export default {
         }
     },
     watch: {
-        print_percent() {
-            this.drawFavicon(this.print_percent);
-        },
-        current_file: {
-            handler: function(newVal) {
-                this.$socket.sendObj("server.files.metadata", { filename: newVal }, "files/getMetadataCurrentFile");
-            }
-        },
-        config() {
-            this.boolNaviHeightmap = (typeof(this.config.bed_mesh) !== "undefined");
-        },
-        isConnected(newVal) {
-            this.overlayDisconnect = !newVal;
-        }
+        
     },
 }
 </script>

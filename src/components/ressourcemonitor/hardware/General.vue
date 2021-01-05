@@ -4,7 +4,7 @@
         <v-card class="mb-5" v-if="!ressourcemanagerAviable">
             <v-toolbar flat dense >
                 <v-toolbar-title>
-                    <span class="subheading" style="color:#D32F2F;"><v-icon left style="color:#D32F2F;">mdi-collage</v-icon>Module not Found!</span>
+                    <span class="subheading" style="color:#D32F2F;"><v-icon left style="color:#D32F2F;">mdi-collage</v-icon>Server not Found!</span>
                 </v-toolbar-title>
             </v-toolbar>
             <v-card-text class="py-1">
@@ -13,7 +13,7 @@
                         <v-col class="py-0 px-3 equal-width">
                             <v-row class="pb-3 px-0">
                                 <v-col class="py-2 px-2">
-                                    <span>Please configure in the Settings the hsinfoserver</span>
+                                    <span>There was a connection Issue, please Check your Internet Connection or contact the Hoster!</span>
                                 </v-col>
                             </v-row>
                         </v-col>
@@ -102,7 +102,7 @@
         computed: {
             ressourcemanagerAviable: {
                 get() {
-                    return this.$store.state.gui.dashboard.boolRessourceMonitorAvailable;
+                    return this.$store.state.ressourcemonitor.connected;
                 }
             },
             getRAMBar:function(){

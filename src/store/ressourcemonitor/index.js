@@ -18,6 +18,7 @@ import filesystemPartitionUsageHistory from './filesystemPartitionUsageHistory'
 
 export function getDefaultState() {
 	return {
+		connected: false,
 		system: [],
 		bios: [],
 		chassis: [],

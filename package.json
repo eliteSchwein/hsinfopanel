@@ -1,6 +1,6 @@
 {
-  "name": "mainsail",
-  "version": "0.3.0",
+  "name": "hsinfopanel",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "./node_modules/.bin/vue-cli-service serve --modern",

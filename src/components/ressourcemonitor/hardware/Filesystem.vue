@@ -15,13 +15,15 @@
                                 <v-col class="py-0 px-1">
                                     <div v-if="disk.interfaceType=='USB'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_usb.png')+')',backgroundSize:'80px 80px'}">
                                     </div>
-                                    <div v-if="disk.interfaceType=='NVMe'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_nvme.png')+')',backgroundSize:'80px 80px'}">
+                                    <div v-if="disk.interfaceType=='NVMe'||disk.interfaceType=='PCIe'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_nvme.png')+')',backgroundSize:'80px 80px'}">
                                     </div>
                                     <div v-if="disk.interfaceType=='SATA'&&disk.type=='SSD'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_ssd.png')+')',backgroundSize:'80px 80px'}">
                                     </div>
                                     <div v-if="disk.interfaceType=='SATA'&&disk.type=='HD'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_hdd.png')+')',backgroundSize:'80px 80px'}">
                                     </div>
                                     <div v-if="disk.interfaceType==''&&disk.type=='SSD'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_card.png')+')',backgroundSize:'80px 80px'}">
+                                    </div>
+                                    <div v-if="disk.interfaceType==''&&disk.type=='HD'" @click="openDiskDetails(index)" v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+require('@/assets/ressourcemonitor/disk_hdd.png')+')',backgroundSize:'80px 80px'}">
                                     </div>
                                 </v-col>
                                 <v-col class="py-0 px-1">

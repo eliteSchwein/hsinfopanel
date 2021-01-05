@@ -19,6 +19,19 @@ import filesystemPartitionUsageHistory from './filesystemPartitionUsageHistory'
 export function getDefaultState() {
 	return {
 		connected: false,
+		selectedserver: "",
+		servers: [
+			{
+				url: "http://localhost:8082",
+				label: "Toastbread",
+				icon: "fire"
+			},
+			{
+				url: "http://localhost:8083",
+				label: "Toastbread1",
+				icon: "fire"
+			},
+		],
 		system: [],
 		bios: [],
 		chassis: [],

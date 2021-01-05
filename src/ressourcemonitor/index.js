@@ -2,7 +2,7 @@ import store from '../store/index'
 
 const axios = require('axios');
 
-var URL = "http://localhost:8082";
+var URL = store.state.ressourcemonitor.selectedserver.url;
 
 var now = Date.now();
 
@@ -51,7 +51,7 @@ setInterval(retrieveDataHW,2000);
 
 function checkURL(){
     var oldURL = URL;
-    URL = "http://localhost:8082";
+    URL = store.state.ressourcemonitor.selectedserver.url;
     if(!URL.startsWith("https://")&&!URL.startsWith("http://")){
         return;
     }

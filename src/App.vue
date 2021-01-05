@@ -16,7 +16,7 @@
 
 <template>
     <v-app>
-        <vue-headful :title="getTitle" />
+        <vue-headful title="HS Info" />
         <v-navigation-drawer
             class="sidebar-wrapper" persistent v-model="drawer" enable-resize-watcher fixed app
             :src="require('./assets/bg-navi.png')"
@@ -24,28 +24,15 @@
         >
             <div id="nav-header">
                 <img :src="require('./assets/logo.svg')" />
-                <v-toolbar-title>E</v-toolbar-title>
+                <v-toolbar-title>HS Info</v-toolbar-title>
             </div>
             <ul class="navi" :expand="$vuetify.breakpoint.mdAndUp">
-                <li v-for="(category, index) in routes" :key="index" :prepend-icon="category.icon"
-                    :class="[category.path !== '/' && currentPage.includes(category.path) ? 'active' : '', 'nav-item']"
-                    :value="true"
+                <li v-for="server in this.$store.state.ressourcemonitor.servers" class="nav-item ml-3 mr-3 mt-3" v-bind:key="server.url"
                     >
-                    <router-link
-                        slot="activator" class="nav-link" exact :to="category.path">
-                        <v-icon>mdi-{{ category.icon }}</v-icon>
-                        <span class="nav-title">{{ category.title }}</span>
-                        <v-icon class="nav-arrow" v-if="category.children && category.children.length > 0">mdi-chevron-down</v-icon>
-                    </router-link>
-
-                    <ul class="child">
-                        <li v-for="(page, pageIndex) in category.children" class="nav-item" v-bind:key="`${index}-${pageIndex}`">
-                            <router-link :to="page.path" class="nav-link" @click.prevent v-if="klippy_state !== 'error' || page.alwaysShow">
-                                <v-icon>mdi-{{ page.icon }}</v-icon>
-                                <span class="nav-title">{{ page.title }}</span>
-                            </router-link>
-                        </li>
-                    </ul>
+                    <v-btn @click="changeServer(server)" block elevation="0" color="transparent">
+                        <v-icon>mdi-{{server.icon }}</v-icon>
+                                <span class="nav-title">{{server.label}}</span>
+                    </v-btn>
                 </li>
             </ul>
         </v-navigation-drawer>
@@ -59,7 +46,7 @@
             <v-scroll-y-transition>
                 <v-container fluid id="page-container" class="container px-sm-6 px-3 mx-auto">
                     <keep-alive>
-                        <router-view></router-view>
+                        <ressourcemonitor></ressourcemonitor>
                     </keep-alive>
                 </v-container>
             </v-scroll-y-transition>
@@ -75,21 +62,24 @@
 <script>
     import routes from './routes';
     import { mapState, mapGetters } from 'vuex';
+    import Ressourcemonitor from './pages/Ressourcemonitor.vue'
 
 export default {
     props: {
         source: String,
     },
     components: {
-
+        Ressourcemonitor
     },
     data: () => ({
         drawer: false,
         activeClass: 'active',
-        routes: routes
+        routes: routes,
+        selectedServer: null
     }),
     created () {
         this.$vuetify.theme.dark = true;
+        this.$store.state.ressourcemonitor.selectedserver=this.$store.state.ressourcemonitor.servers[0]
     },
     computed: {
         currentPage: function() {
@@ -107,6 +97,9 @@ export default {
 
     },
     methods: {
+        changeServer(server){
+            this.$store.state.ressourcemonitor.selectedserver=server
+        },
         drawFavicon(val) {
             let favicon16 = document.querySelector("link[rel*='icon'][sizes='16x16']")
             let favicon32 = document.querySelector("link[rel*='icon'][sizes='32x32']")

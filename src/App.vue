@@ -41,7 +41,7 @@
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
 
-        <v-main id="content" v-bind:style="{backgroundImage:'url('+require('@/assets/background.jpg')+')',backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}">
+        <v-main id="content" v-bind:style="{backgroundImage:'url('+require('@/assets/background.jpg')+')',backgroundAttachment:'fixed',backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}">
             
             <v-scroll-y-transition>
                 <v-container fluid id="page-container" class="container px-sm-6 px-3 mx-auto">

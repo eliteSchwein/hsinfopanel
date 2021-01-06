@@ -52,7 +52,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia()">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-fire</v-icon>Temperature</span>
@@ -71,8 +71,8 @@
             </v-card-text>
         </v-card>
         
-        <v-col class="py-0 px-0 equal-width " v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
-            <v-row v-if="anyGpuFromNvidia">
+        <v-col class="py-0 px-0 equal-width " v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia()">
+            <v-row>
                 <v-col class="py-0 px-3" style="width:45%">
                     <v-card height=250 class="mb-5">
                         <v-toolbar flat dense >

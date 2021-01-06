@@ -48,7 +48,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-triangle-wave</v-icon>Core Frequency</span>
@@ -67,7 +67,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-triangle-wave</v-icon>Mem Frequency</span>
@@ -86,10 +86,10 @@
             </v-card-text>
         </v-card>
         
-        <v-card class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
+        <v-card class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
-                    <span class="subheading"><v-icon left>mdi-tag-text</v-icon>Legend</span>{{anyGpuFromNvidia()}}
+                    <span class="subheading"><v-icon left>mdi-tag-text</v-icon>Legend</span>
                 </v-toolbar-title>
             </v-toolbar>
             <v-card-text class="py-1">

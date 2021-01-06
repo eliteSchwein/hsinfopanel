@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <v-card class="mb-5" v-if="!ressourcemanagerAviable" style="min-width: 250px">
+        <v-card class="mb-5" v-if="!ressourcemanagerAviable">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading" style="color:#D32F2F;"><v-icon left style="color:#D32F2F;">mdi-collage</v-icon>Server not Found!</span>
@@ -21,22 +21,22 @@
                 </v-col>
             </v-card-text>
         </v-card>
-        <v-card class="mb-5" v-if="ressourcemanagerAviable" style="min-width: 250px">
+        <v-card class="mb-5" v-if="ressourcemanagerAviable">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-collage</v-icon>OS</span>
                 </v-toolbar-title>
             </v-toolbar>
             <v-card-text class="py-1">
-                <v-col class="py-0 px-3 pt-3 equal-width">
+                <v-col class="py-0 px-0 pt-3 equal-width">
                     <v-row>
-                        <v-col class="py-0 px-3 equal-width">
+                        <v-col class="py-0 px-0 equal-width">
                             <v-row class="pb-3 px-0">
-                                <v-col class="py-0 px-2 ml-2 mt-2 col-md-5">
-                                    <div v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+getLogo+')',backgroundSize:'80px 80px'}">
+                                <v-col class="py-0 px-0 ml-2 mt-2 col-md-5">
+                                    <div v-bind:style="{marginRight:'auto',marginLeft:'auto',marginTop:'0px',marginBottom:'0px',width: '80px',height:'80px',backgroundImage:'url('+getLogo+')',backgroundSize:'80px 80px'}">
                                     </div>
                                 </v-col>
-                                <v-col class="py-0 px-0">
+                                <v-col class="py-0 px-2">
                                     <strong>Distro: </strong>{{this.$store.state.ressourcemonitor.os.distro}}<br>
                                     <strong>Release: </strong>{{this.$store.state.ressourcemonitor.os.release}}<br>
                                     <strong>Codename: </strong>{{this.$store.state.ressourcemonitor.os.codename}}<br>
@@ -51,7 +51,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card class="mb-5" v-if="ressourcemanagerAviable">
+        <v-card class="mb-5" v-if="ressourcemanagerAviable" style="min-width:200px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-collage</v-icon>Load</span>

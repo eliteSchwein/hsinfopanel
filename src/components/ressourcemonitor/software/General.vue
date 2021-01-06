@@ -3,7 +3,7 @@
     <div>
         <v-col class="py-0 px-0 equal-width" v-if="ressourcemanagerAviable">
             <v-row>
-                <v-col class="py-0 px-3 mb-3" style="width:45%,min-width: 250px">
+                <v-col class="py-0 px-3 mb-3" style="width:45%,min-width: 200px">
                     <v-card class="" height="100%">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
@@ -11,15 +11,15 @@
                             </v-toolbar-title>
                         </v-toolbar>
                         <v-card-text class="py-1">
-                            <v-col class="py-0 px-3 pt-3 equal-width">
+                            <v-col class="py-0 px-0 pt-3 equal-width">
                                 <v-row>
-                                    <v-col class="py-0 px-3 equal-width">
+                                    <v-col class="py-0 px-0 equal-width">
                                         <v-row class="pb-3 px-0">
-                                            <v-col class="py-0 px-2 ml-2 mt-2 col-md-5">
-                                                <div v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '100px',height:'100px',backgroundImage:'url('+require('@/assets/ressourcemonitor/mainboard.png')+')',backgroundSize:'100px 100px'}">
+                                            <v-col class="py-0 px-0 ml-0 mt-2 col-md-5">
+                                                <div v-bind:style="{marginRight:'auto',marginLeft:'auto',marginTop:'0px',marginBottom:'0px',width: '100px',height:'100px',backgroundImage:'url('+require('@/assets/ressourcemonitor/mainboard.png')+')',backgroundSize:'100px 100px'}">
                                                 </div>
                                             </v-col>
-                                            <v-col class="py-0 px-0">
+                                            <v-col class="py-0 px-2">
                                                 <strong>Manufacturer: </strong>{{this.$store.state.ressourcemonitor.mainboard.manufacturer}}<br>
                                                 <strong>Model: </strong>{{this.$store.state.ressourcemonitor.mainboard.model}}<br>
                                                 <strong>Version: </strong>{{this.$store.state.ressourcemonitor.mainboard.version}}<br>
@@ -34,23 +34,23 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col class="py-0 px-3 mb-3" style="width:45%,min-width: 250px">
-                    <v-card class="" height="100%">
+                <v-col class="py-0 px-3 mb-3" style="width:45%,min-width: 200px">
+                    <v-card class="" height="100%" style="min-width: 200px">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-desktop-classic</v-icon>System</span>
                             </v-toolbar-title>
                         </v-toolbar>
                         <v-card-text class="py-1">
-                            <v-col class="py-0 px-3 pt-3 equal-width">
+                            <v-col class="py-0 px-0 pt-3 equal-width">
                                 <v-row>
-                                    <v-col class="py-0 px-3 equal-width">
+                                    <v-col class="py-0 px-0 equal-width">
                                         <v-row class="pb-3 px-0">
-                                            <v-col class="py-0 px-2 ml-2 mt-2 col-md-5">
-                                                <div v-bind:style="{marginTop:'0px',marginBottom:'0px',width: '100px',height:'100px',backgroundImage:'url('+require('@/assets/ressourcemonitor/system.png')+')',backgroundSize:'100px 100px'}">
+                                            <v-col class="py-0 px-0 ml-0 mt-2 col-md-5">
+                                                <div v-bind:style="{marginRight:'auto',marginLeft:'auto',marginTop:'0px',marginBottom:'0px',width: '100px',height:'100px',backgroundImage:'url('+require('@/assets/ressourcemonitor/system.png')+')',backgroundSize:'100px 100px'}">
                                                 </div>
                                             </v-col>
-                                            <v-col class="py-0 px-0">
+                                            <v-col class="py-0 px-2">
                                                 <strong>Manufacturer: </strong>{{this.$store.state.ressourcemonitor.system.manufacturer}}<br>
                                                 <strong>Model: </strong>{{this.$store.state.ressourcemonitor.system.model}}<br>
                                                 <strong>Version: </strong>{{this.$store.state.ressourcemonitor.system.version}}<br>

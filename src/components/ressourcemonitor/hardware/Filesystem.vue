@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <v-card class="mb-5" v-for="(disk, index) in this.filterDisk" :key="index">
+        <v-card class="mb-5" v-for="(disk, index) in this.filterDisk" :key="index" style="min-width: 250px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-memory</v-icon>Disk {{index}}</span>

@@ -6,7 +6,6 @@ import mutations from './mutations'
 import getters from './getters'
 
 // load modules
-import socket from './socket'
 import ressourcemonitor from './ressourcemonitor'
 
 Vue.use(Vuex);
@@ -17,7 +16,6 @@ export default new Vuex.Store({
         packageVersion: process.env.PACKAGE_VERSION || '0.0.0',
     },
     modules: {
-        socket,
         ressourcemonitor,
     },
     getters: getters,

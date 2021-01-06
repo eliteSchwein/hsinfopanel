@@ -60,7 +60,6 @@
 </template>
 
 <script>
-    import routes from './routes';
     import { mapState, mapGetters } from 'vuex';
     import Ressourcemonitor from './pages/Ressourcemonitor.vue'
 
@@ -74,7 +73,6 @@ export default {
     data: () => ({
         drawer: false,
         activeClass: 'active',
-        routes: routes,
         selectedServer: null
     }),
     created () {
@@ -82,9 +80,6 @@ export default {
         this.$store.state.ressourcemonitor.selectedserver=this.$store.state.ressourcemonitor.servers[0]
     },
     computed: {
-        currentPage: function() {
-          return this.$route.fullPath;
-        },
         ...mapState({
             
         }),
@@ -217,18 +212,6 @@ export default {
         margin: 0.5em 1em;
     }
 
-    nav ul.navi a.nav-link:hover,
-    nav ul.navi li.active>a.nav-link,
-    nav ul.navi a.nav-link.router-link-active {
-        background: rgba(255,255,255,.3);
-        opacity: 1;
-    }
-
-    nav ul.navi li.active>a.nav-link i.nav-arrow ,
-    nav ul.navi a.nav-link.router-link-active i.nav-arrow {
-        transform: rotate(0);
-    }
-
     nav ul.navi a.nav-link>i.v-icon {
         color: white;
         font-size: 1.7em;
@@ -257,18 +240,8 @@ export default {
         margin: 0;
     }
 
-    nav ul.navi>li>a.router-link-active+ul.child,
-    nav ul.navi>li.active>ul.child {
-        display: block;
-    }
-
     nav ul.navi>li>ul.child a.nav-link {
         padding: 5px 15px 5px 15px;
-    }
-
-    nav ul.navi>li>ul.child a.nav-link:hover,
-    nav ul.navi>li>ul.child a.nav-link.router-link-active {
-        background: rgba(255,255,255,.2);
     }
 
     nav ul.navi>li>ul.child a.nav-link>span.nav-title {

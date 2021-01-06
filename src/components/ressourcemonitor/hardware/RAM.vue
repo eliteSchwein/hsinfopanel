@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <v-card>
+        <v-card style="min-width: 250px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-memory</v-icon>Modules</span>

@@ -3,7 +3,7 @@
     <div>
         <v-col class="py-0 px-0 equal-width " v-if="ressourcemanagerAviable">
             <v-row>
-                <v-col class="py-0 px-3" style="width:45%">
+                <v-col class="py-0 px-3" style="width:45%,min-width: 250px">
                     <v-card class="mb-3">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
@@ -34,7 +34,7 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col class="py-0 px-3" style="width:45%">
+                <v-col class="py-0 px-3" style="width:45%,min-width: 250px">
                     <v-card class="mb-3">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
@@ -65,13 +65,14 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col>
+                <v-col style="min-width: 250px">
                     <v-card class="">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-apps</v-icon>Processes</span>
                             </v-toolbar-title>
-                            <div style="position: absolute;right: 20px;">
+                            <v-spacer></v-spacer>
+                            <div style="width:30%">
                                 <v-text-field
                                     v-model="search"
                                     append-icon="mdi-magnify"

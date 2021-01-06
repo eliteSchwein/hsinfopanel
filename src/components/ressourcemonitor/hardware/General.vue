@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <v-card class="mb-5" v-if="!ressourcemanagerAviable">
+        <v-card class="mb-5" v-if="!ressourcemanagerAviable" style="min-width: 250px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading" style="color:#D32F2F;"><v-icon left style="color:#D32F2F;">mdi-collage</v-icon>Server not Found!</span>
@@ -21,7 +21,7 @@
                 </v-col>
             </v-card-text>
         </v-card>
-        <v-card class="mb-5" v-if="ressourcemanagerAviable">
+        <v-card class="mb-5" v-if="ressourcemanagerAviable" style="min-width: 250px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-collage</v-icon>OS</span>

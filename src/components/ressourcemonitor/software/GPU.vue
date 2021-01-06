@@ -52,13 +52,13 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-fire</v-icon>Temperature</span>
                 </v-toolbar-title>
             </v-toolbar>
-            <v-card-text class="py-1">
+            <v-card-text class="py-1" style="">
                 <v-col class="py-0 px-3 equal-width pt-2">
                     <v-row>
                         <v-col class="py-0 px-3">
@@ -71,10 +71,10 @@
             </v-card-text>
         </v-card>
         
-        <v-col class="py-0 px-0 equal-width ">
+        <v-col class="py-0 px-0 equal-width " v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-row>
                 <v-col class="py-0 px-3" style="width:45%">
-                    <v-card height=250 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+                    <v-card height=250 class="mb-5">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-chart-donut</v-icon>Core Usage</span>
@@ -95,7 +95,7 @@
                 </v-col> 
                 
                 <v-col class="py-0 px-3" style="width:45%">
-                    <v-card height=250 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+                    <v-card height=250 class="mb-5">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-chart-donut</v-icon>Mem Usage</span>
@@ -173,6 +173,18 @@
 
         },
         methods: {
+            anyGpuFromNvidia:function(){
+                var foundNvidiaGpu = false;
+                this.$store.state.ressourcemonitor.gpu.cards.forEach(card => {
+                    if(card.vendor.includes('NVIDIA')){
+                        foundNvidiaGpu = true
+                    }
+                    if(card.model.includes('NVIDIA')){
+                        foundNvidiaGpu = true
+                    }
+                });
+                return foundNvidiaGpu
+            },
             calculateDiagonale(x,y){
                 return (Math.sqrt((x*x)+(y*y))/2.54).toFixed(0)
             },

@@ -23,7 +23,7 @@
                 </v-col>
             </v-card-text>
         </v-card>
-        <v-card class="mb-5" v-for="(card, index) in this.$store.state.ressourcemonitor.network.interfaces" :key="index">
+        <v-card class="mb-5" v-for="(card, index) in this.$store.state.ressourcemonitor.network.interfaces" :key="index" style="min-width: 250px">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-memory</v-icon>Network {{index}}</span>

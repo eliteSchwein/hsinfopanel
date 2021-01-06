@@ -10,47 +10,37 @@
             <v-card-text class="py-1">
                 <v-col class="py-0 px-3 equal-width">
                     <v-row>
-                        <v-col class="py-0 px-3">
+                        <v-col class="py-0 px-3 pt-3">
+                            <line-chart :chart-data="chartdata" :max="(this.$store.state.ressourcemonitor.ram.total/1024/1024/1024).toFixed(0)+1"></line-chart>
+                        </v-col>
+                    </v-row>
+                    <v-row class="py-5">
+                        <v-col class="py-0 px-3 equal-width">
                             <v-row>
-                                
-                                <v-col class="py-0 px-3 pt-3">
-                                    <line-chart :chart-data="chartdata" :max="(this.$store.state.ressourcemonitor.ram.total/1024/1024/1024).toFixed(0)+1"></line-chart>
+                                <v-col class="py-1 px-1">
+                                    <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
+                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 87px;">
+                                            Swap
+                                        </div>
+                                        <div class="pl-2 pt-1 mt-2" style="line-height: 17px;">
+                                            <strong>Total: </strong> {{(this.$store.state.ressourcemonitor.ram.total/1024/1024/1024).toFixed(2)}} GB <br>
+                                            <strong>Used: </strong> {{(this.$store.state.ressourcemonitor.ram.used/1024/1024/1024).toFixed(2)}} GB<br>
+                                        </div>
+                                    </div>
                                 </v-col>
-                                
-                            </v-row>
-                            <v-row>
-                                <v-col class="py-10">
-                                    <v-col class="py-0 px-3 equal-width">
-                                        <v-row>
-                                            <v-col class="py-1 pl-5">
-                                                
-                                            </v-col>
-                                            <v-col class="py-1 pl-5">
-                                                <img :src="require('@/assets/ressourcemonitor/ram.png')" width="" height="" style="margin-left:-5px">
-                                                <div style="margin-top:-57px" class="pl-2">
-                                                    <strong>Total: </strong> {{(this.$store.state.ressourcemonitor.ram.total/1024/1024/1024).toFixed(2)}} GB <br>
-                                                    <strong>Used: </strong> {{(this.$store.state.ressourcemonitor.ram.used/1024/1024/1024).toFixed(2)}} GB<br>
-                                                </div>
-                                            </v-col>
-                                            <v-col class="py-1 pl-5">
-                                                
-                                            </v-col>
-                                            <v-col class="py-1 pl-5">
-                                                <img :src="require('@/assets/ressourcemonitor/swap.png')" width="" height="" style="margin-left:-5px">
-                                                <div style="margin-top:-57px" class="pl-2">
-                                                    <strong>Total: </strong> {{(this.$store.state.ressourcemonitor.ram.totalswap/1024/1024/1024).toFixed(2)}} GB <br>
-                                                    <strong>Used: </strong> {{(this.$store.state.ressourcemonitor.ram.usedswap/1024/1024/1024).toFixed(2)}} GB<br>
-                                                </div>
-                                            </v-col>
-                                            <v-col class="py-1 pl-5">
-                                                
-                                            </v-col>
-                                        </v-row>
-                                    </v-col>
+                                <v-col class="py-1 px-1">
+                                    <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
+                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 87px;">
+                                            Swap
+                                        </div>
+                                        <div class="pl-2 pt-1 mt-2" style="line-height: 17px;">
+                                            <strong>Size:</strong> {{(this.$store.state.ressourcemonitor.ram.totalswap/1024/1024/1024).toFixed(2)}} GB<br>
+                                            <strong>Used:</strong> {{(this.$store.state.ressourcemonitor.ram.usedswap/1024/1024/1024).toFixed(2)}} GB<br>
+                                        </div>
+                                    </div>
                                 </v-col>
-                                
                             </v-row>
-                        </v-col> 
+                        </v-col>
                     </v-row>
                 </v-col>
             </v-card-text>

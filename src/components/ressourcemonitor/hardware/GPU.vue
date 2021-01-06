@@ -37,7 +37,7 @@
                                 <v-col class="py-0 px-1">
                                     <div @click="openGPUDetails(index)" v-bind:style="{marginTop:'-24px',marginBottom:'-24px',width: '175px',height:'175px',backgroundImage:'url('+require('@/assets/ressourcemonitor/gpu.png')+')',backgroundSize:'175px 175px'}">
                                         <div class="px-4 py-12" style="margin-left: 68px;font-size:10px">
-                                            <strong>{{card.vendor}} </strong>
+                                            <strong>{{card.vendor.split(' ')[0]}} </strong>
                                         </div>
                                     </div>
                                 </v-col>
@@ -48,7 +48,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-triangle-wave</v-icon>Core Frequency</span>
@@ -67,7 +67,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+        <v-card height=200 class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-triangle-wave</v-icon>Mem Frequency</span>
@@ -86,7 +86,7 @@
             </v-card-text>
         </v-card>
         
-        <v-card class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0">
+        <v-card class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
                     <span class="subheading"><v-icon left>mdi-tag-text</v-icon>Legend</span>
@@ -112,15 +112,26 @@
                     <v-col class="py-0 px-3 equal-width">
                         <v-row>
                                 <v-col class="py-0 px-3">
-                                    <div>
+                                    <div v-if="gpuFromNvidia(this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].vendor,this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].model)">
                                         <strong>Manufacturer: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].vendor}}<br>
                                         <strong>Model: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].model}}<br>
                                         <strong>Bus: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].bus}}<br>
                                         <strong>Bus-ID: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].pciBus}}<br>
+                                        <strong>Bus-Address: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].busAddress}}<br>
                                         <strong>Device-ID: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].subDeviceId}}<br>
                                         <strong>Driver Version: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].driverVersion}}<br>
                                         <strong>VRam: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].memoryTotal}} MB<br>
                                         <strong>VRam Used: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].memoryUsed}} MB<br>
+                                    </div>
+                                    <div v-if="!gpuFromNvidia(this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].vendor,this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].model)">
+                                        <strong>Manufacturer: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].vendor}}<br>
+                                        <strong>Model: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].model}}<br>
+                                        <strong>Bus: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].bus}}<br>
+                                        <strong>Bus-Address: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].busAddress}}<br>
+                                        <div v-if="this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].bus=='PCI'">
+                                            <strong>PCi-ID: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].pciID}}<br>
+                                        </div>
+                                        <strong>VRam: </strong>{{this.$store.state.ressourcemonitor.gpu.cards[this.dialogGPU.index].vram}} MB<br>
                                     </div>
                                 </v-col>
                         </v-row>
@@ -157,6 +168,27 @@
 
         },
         methods: {
+            gpuFromNvidia:function(vendor,model){
+                if(vendor.includes('NVIDIA')){
+                    return true
+                }
+                if(model.includes('NVIDIA')){
+                    return true
+                }
+                return false
+            },
+            anyGpuFromNvidia:function(){
+                var foundNvidiaGpu = false;
+                this.$store.state.ressourcemonitor.gpu.cards.forEach(card => {
+                    if(card.vendor.includes('NVIDIA')){
+                        foundNvidiaGpu = true
+                    }
+                    if(card.model.includes('NVIDIA')){
+                        foundNvidiaGpu = true
+                    }
+                });
+                return foundNvidiaGpu
+            },
             getLabelColor:function(card){
                 var color=this.$store.state.ressourcemonitor.gpu.colors[card];
                 return color;

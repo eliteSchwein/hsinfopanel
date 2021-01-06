@@ -19,7 +19,7 @@ setGPUColors();
 setNetworkColors();
 setCPUColors();
 
-setInterval(checkURL,1000);
+setInterval(checkURL,2000);
 setInterval(retrieveDataLoad,500);
 setInterval(retrieveDataHW,2000);
 //setInterval(resetData,10000);
@@ -64,7 +64,7 @@ function checkURL(){
         store.dispatch('ressourcemonitor/setData', {  connected: false  });
     }
     now = Date.now();
-    axios.get(URL,{timeout:900})
+    axios.get(URL,{timeout:1800})
     .then(function (){
         store.dispatch('ressourcemonitor/setData', { connected: true  });
         if(typeof(gpuColorArray)==="undefined"){

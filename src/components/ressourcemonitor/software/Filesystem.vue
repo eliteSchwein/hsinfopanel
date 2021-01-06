@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <v-col class="py-0 px-0 equal-width ">
+        <v-col class="py-0 px-0 equal-width " style="min-width: 250px">
             <v-row v-for="(partition, index) in this.$store.state.ressourcemonitor.filesystem.partitions" :key="index">
                 <v-col class="py-0 px-3">
                     <v-card class="mb-5">
@@ -19,12 +19,9 @@
                                         </keep-alive>
                                     </v-col> 
                                 </v-row>
-                                <v-row>
-                                    <v-col class="py-0 pl-1">
-                                        
-                                    </v-col>
-                                    <v-col class="py-5 px-1">
-                                        <div v-bind:style="{fontSize:'10px',marginTop:'0px',marginBottom:'0px',width: '160px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
+                                <v-row class="py-5">
+                                    <v-col class="py-1 px-1">
+                                        <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
                                             <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -22px;margin-left: 104px;">
                                                 Info
                                             </div>
@@ -34,11 +31,8 @@
                                             </div>
                                         </div>
                                     </v-col> 
-                                    <v-col class="py-0 pl-1">
-                                        
-                                    </v-col>
-                                    <v-col class="py-5 px-1">
-                                        <div v-bind:style="{fontSize:'10px',marginTop:'0px',marginBottom:'0px',width: '160px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
+                                    <v-col class="py-1 px-1">
+                                        <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
                                             <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 87px;">
                                                 Storage
                                             </div>
@@ -48,9 +42,6 @@
                                             </div>
                                         </div>
                                     </v-col> 
-                                    <v-col class="py-0 pl-1">
-                                        
-                                    </v-col>
                                 </v-row>
                             </v-col>
                         </v-card-text>

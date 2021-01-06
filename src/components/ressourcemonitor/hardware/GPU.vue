@@ -89,7 +89,7 @@
         <v-card class="mb-5" v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0&&anyGpuFromNvidia">
             <v-toolbar flat dense >
                 <v-toolbar-title>
-                    <span class="subheading"><v-icon left>mdi-tag-text</v-icon>Legend</span>
+                    <span class="subheading"><v-icon left>mdi-tag-text</v-icon>Legend</span>{{anyGpuFromNvidia()}}
                 </v-toolbar-title>
             </v-toolbar>
             <v-card-text class="py-1">
@@ -187,7 +187,6 @@
                         foundNvidiaGpu = true
                     }
                 });
-                console.log("nvidiagpus: "+foundNvidiaGpu)
                 return foundNvidiaGpu
             },
             getLabelColor:function(card){

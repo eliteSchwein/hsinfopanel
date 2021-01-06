@@ -72,7 +72,7 @@
         </v-card>
         
         <v-col class="py-0 px-0 equal-width " v-if="this.$store.state.ressourcemonitor.gpu.cards.length!=0 && anyGpuFromNvidia">
-            <v-row>
+            <v-row v-if="anyGpuFromNvidia">
                 <v-col class="py-0 px-3" style="width:45%">
                     <v-card height=250 class="mb-5">
                         <v-toolbar flat dense >

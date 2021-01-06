@@ -1,10 +1,10 @@
 
 <template>
     <div>
-        <v-col class="py-0 px-0 equal-width " v-if="ressourcemanagerAviable">
+        <v-col class="py-0 px-0 equal-width d-flex flex-column" v-if="ressourcemanagerAviable">
             <v-row>
-                <v-col class="py-0 px-3" style="width:45%,min-width: 250px">
-                    <v-card class="mb-3">
+                <v-col class="py-0 px-3 flex d-flex flex-column" style="width:45%,min-width: 250px">
+                    <v-card class="mb-3" height="100%">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-memory</v-icon>Mainboard</span>
@@ -34,8 +34,8 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col class="py-0 px-3" style="width:45%,min-width: 250px">
-                    <v-card class="mb-3">
+                <v-col class="py-0 px-3 flex d-flex flex-column" style="width:45%,min-width: 250px">
+                    <v-card class="mb-3" height="100%">
                         <v-toolbar flat dense >
                             <v-toolbar-title>
                                 <span class="subheading"><v-icon left>mdi-desktop-classic</v-icon>System</span>

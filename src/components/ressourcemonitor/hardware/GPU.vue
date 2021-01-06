@@ -59,9 +59,9 @@
                     <v-row>
                         <v-col class="py-0 px-3">
                             <keep-alive>
-                                <GPUCoreFreq v-if="anyGpuFromNvidia"></GPUCoreFreq>
+                                <GPUCoreFreq v-if="anyGpuFromNvidia()"></GPUCoreFreq>
                             </keep-alive>
-                            {{anyGpuFromNvidia}}
+                            {{anyGpuFromNvidia()}}
                         </v-col> 
                     </v-row>
                 </v-col>

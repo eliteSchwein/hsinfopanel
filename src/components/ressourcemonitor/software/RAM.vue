@@ -19,8 +19,8 @@
                             <v-row>
                                 <v-col class="py-1 px-1">
                                     <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
-                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 87px;">
-                                            Swap
+                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 98px;">
+                                            RAM
                                         </div>
                                         <div class="pl-2 pt-1 mt-2" style="line-height: 17px;">
                                             <strong>Total: </strong> {{(this.$store.state.ressourcemonitor.ram.total/1024/1024/1024).toFixed(2)}} GB <br>
@@ -30,7 +30,7 @@
                                 </v-col>
                                 <v-col class="py-1 px-1">
                                     <div v-bind:style="{fontSize:'10px',marginLeft:'auto',marginRight:'auto',width: '130px',height:'40px',backgroundImage:'url('+require('@/assets/ressourcemonitor/partition.png')+')'}">
-                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 87px;">
+                                        <div style="color: rgb(76, 76, 76);margin-top: -1px;margin-bottom: -29px;margin-left: 94px;">
                                             Swap
                                         </div>
                                         <div class="pl-2 pt-1 mt-2" style="line-height: 17px;">

@@ -187,6 +187,7 @@
                         foundNvidiaGpu = true
                     }
                 });
+                console.log("nvidiagpus: "+foundNvidiaGpu)
                 return foundNvidiaGpu
             },
             getLabelColor:function(card){

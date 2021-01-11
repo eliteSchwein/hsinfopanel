@@ -36,6 +36,13 @@
                     <v-list-item-title>{{server.label}}</v-list-item-title>
                 </v-list-item>
             </v-list>
+            <template v-slot:append>
+                <div class="pa-2" align="center">
+                    <v-btn fab elevation="0" small href="https://github.com/eliteSchwein/hsinfopanel" target="_blank">
+                        <v-icon>mdi-github</v-icon>
+                    </v-btn>
+                </div>
+            </template>
         </v-navigation-drawer>
 
         

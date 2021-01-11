@@ -18,26 +18,29 @@
     <v-app>
         <vue-headful title="HS Info" />
         <v-navigation-drawer
-            class="sidebar-wrapper" persistent v-model="drawer" enable-resize-watcher fixed app
+            class="sidebar-wrapper" disable-resize-watcher persistent v-model="drawer" fixed app
             :src="require('./assets/bg-navi.png')"
             
         >
             <div id="nav-header">
                 <img :src="require('./assets/logo.svg')" />
-                <v-toolbar-title>HS Info</v-toolbar-title>
+                <v-toolbar-title>
+                    HS Info <p class="mb-0 text-body-2 pl-0 pb-2" style="font-size: 11px!important;line-height: 2px;">v{{ getVersion }}</p>
+                </v-toolbar-title>
             </div>
-            <ul class="navi" :expand="$vuetify.breakpoint.mdAndUp">
-                <li v-for="server in this.$store.state.ressourcemonitor.servers" class="nav-item ml-3 mr-3 mt-3" v-bind:key="server.url"
-                    >
-                    <v-btn @click="changeServer(server)" block elevation="0" color="transparent">
+            <v-list nav dense>
+                <v-list-item link v-for="server in this.$store.state.ressourcemonitor.servers" v-bind:key="server.url" @click="changeServer(server)">
+                    <v-list-item-icon>
                         <v-icon>mdi-{{server.icon }}</v-icon>
-                                <span class="nav-title">{{server.label}}</span>
-                    </v-btn>
-                </li>
-            </ul>
+                    </v-list-item-icon>
+                    <v-list-item-title>{{server.label}}</v-list-item-title>
+                </v-list-item>
+            </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app elevate-on-scroll>
+        
+        <v-app-bar app elevate-on-scroll color="#212121CC">
+            
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
 
@@ -51,11 +54,6 @@
                 </v-container>
             </v-scroll-y-transition>
         </v-main>
-        
-        <v-footer app class="d-block" style="z-index:20000">
-            
-            <span style="z-index=200">{{ getVersion }}</span>
-        </v-footer>
     </v-app>
 </template>
 

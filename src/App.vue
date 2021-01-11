@@ -19,7 +19,7 @@
         <vue-headful title="HS Info" />
         <v-navigation-drawer
             class="sidebar-wrapper" disable-resize-watcher persistent v-model="drawer" fixed app
-            :src="require('./assets/bg-navi.png')"
+            color="#181818DD"
             
         >
             <div id="nav-header">
@@ -46,7 +46,7 @@
         </v-navigation-drawer>
 
         
-        <v-app-bar app elevate-on-scroll color="#212121CC">
+        <v-app-bar app elevate-on-scroll color="#181818DD">
             
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
